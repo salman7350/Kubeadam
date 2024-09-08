@@ -13,7 +13,7 @@ AWS Load Balancer Controller - Ingress SSL
 - Create a Hosted zone in Route53 using domain name
 - Add nameservers record in domain register (in our case its HOSTINGER ) 
 - It may take 25 to 30 minutes for the changes to be applied
-- verify using nslookup cmd : `nslookup -type=NS cloudworld.fun 8.8.8.8`
+- verify using nslookup cmd : `nslookup -type=NS rayaan.cloud 8.8.8.8`
 
 **NOTE : either you can register a new DNS in AWS Route53 as well but it’s little  costly** 
 
@@ -22,7 +22,7 @@ AWS Load Balancer Controller - Ingress SSL
 - Go to Services -> Certificate Manager -> Create a Certificate
 - Click on **Request a Certificate**
   - Choose the type of certificate for ACM to provide: Request a public certificate
-  - Add domain names: *.yourdomain.com (in my case it is going to be `*.cloudworld.fun`)
+  - Add domain names: *.yourdomain.com (in my case it is going to be `*.rayaan.cloud`)
   - Select a Validation Method: **DNS Validation**
   - Click on **Confirm & Request**    
 - **Validation**
@@ -72,26 +72,26 @@ kubectl get svc
 ### Step-06: Add DNS in Route53   
 - Go to **Services -> Route 53**
 - Go to **Hosted Zones**
-  - Click on **yourdomain.com** (in my case cloudworld.fun)
+  - Click on **yourdomain.com** (in my case rayaan.cloud)
 - Create a **Record Set**
-  - **Name:** www.cloudworld.fun
+  - **Name:** www.rayaan.cloud
   - **Alias:** yes
   - **Alias Target:** Copy our ALB DNS Name here (Sample: ssl-ingress-551932098.us-east-1.elb.amazonaws.com)
   - Click on **Create**
 
 ### Step-07: Access Application using newly registered DNS Name
 - **Access Application**
-- **Important Note:** Instead of `cloudworld.fun` you need to replace with your registered Route53 domain : `www.cloudworld.fun`
+- **Important Note:** Instead of `cloudworld.fun` you need to replace with your registered Route53 domain : `www.rayaan.cloud`
 ```t
 # HTTP URLs
-http://www.cloudworld.fun/app2/index.html
-http://www.cloudworld.fun/app3/index.html
-http://www.cloudworld.fun/
+http://www.rayaan.cloud/app2/index.html
+http://www.rayaan.cloud/app3/index.html
+http://www.rayaan.cloud.fun/
 
 # HTTPS URLs
-https://www.cloudworld.fun/app2/index.html
-https://www.cloudworld.fun/app3/index.html
-https://www.cloudworld.fun/
+https://www.rayaan.cloud/app2/index.html
+https://www.rayaan.cloud/app3/index.html
+https://www.rayaan.cloud/
 ```
 ### Step-08: Clean Up
 ```t
@@ -99,7 +99,7 @@ https://www.cloudworld.fun/
 kubectl delete -f kube-manifests/
 
 ## Delete Route53 Record Set
-- Delete Route53 Record we created (www.cloudworld.fun)
+- Delete Route53 Record we created (www.rayaan.cloud)
 ```
 ```
 ## UNINSTALL AWS Load Balancer Controller using Helm Command (Information Purpose - SHOULD NOT EXECUTE THIS COMMAND)
